@@ -6,3 +6,6 @@ node_modules
 
 # Lock Files
 *.lock
+
+# build files
+build
