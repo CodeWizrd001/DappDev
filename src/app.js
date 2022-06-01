@@ -3,12 +3,14 @@ App = {
   contracts: {},
 
   load: async () => {
-    console.log('App.load');
+    console.log('App Loading...');
 
     await App.loadWeb3();
     await App.loadAccount();
     await App.loadContract();
     await App.render();
+
+    console.log('App loaded.');
   } , 
   loadWeb3: async () => {
     if (typeof web3 !== 'undefined') {
@@ -47,7 +49,6 @@ App = {
   loadAccount: async () => {
     // Set the current blockchain account
     App.account = web3.eth.accounts[0]
-
     console.log('Account: ' + App.account);
   },
 
@@ -109,7 +110,6 @@ App = {
       else {
         $('#taskList').append($newTaskTemplate)
       }
-
       // Show the task
       $newTaskTemplate.show()
     }
@@ -120,16 +120,12 @@ App = {
     if (App.loading) {
       return
     }
-
     // Update app loading state
     App.setLoading(true)
-
     // Render Account
     $('#account').html(App.account)
-
     // Render Tasks
     await App.renderTasks()
-
     // Update loading state
     App.setLoading(false)
   }
